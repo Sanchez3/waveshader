@@ -2,22 +2,7 @@
  * Created by sanchez 
  */
 'use strict';
-// import CSS
-// import animate_css from 'animate.css/animate.min.css';
-// import css from '../css/css.css';
-// import scss from '../css/sass.scss';
 
-
-
-// import Js Plugins/Entities
-
-//ES6 Module
-// import Bar1 from './entities/Bar1';
-// import Howler from 'howler';
-//CommonJS
-// var Bar2=require('./entities/Bar2');
-
-// if (!Detector.webgl) Detector.addGetWebGLMessage();
 var container, stats;
 var camera, scene, renderer;
 var shaderMaterial;
@@ -87,7 +72,6 @@ function initLoad() {
 
 function loadResCallBack() {
     console.log('init');
-
 
     var geo = new THREE.PlaneBufferGeometry(constWork.width, constWork.height, Math.round(constWork.width / 10), Math.round(constWork.height / 10));
     geo.boundingSphere = new THREE.Sphere(new THREE.Vector3, 1e6);
@@ -254,22 +238,6 @@ function initEvent() {
     window.addEventListener('resize', onWindowResize, false);
 }
 
-// function initGui() {
-//     var gui = new dat.GUI();
-//     var folderShaderMaterial = gui.addFolder('ShaderMaterial');
-//     var burnTextures = {
-//         burningTexture1: burningTexture1,
-//         burningTexture2: burningTexture2
-//     };
-//     folderShaderMaterial.add(params, 'burnTexture', Object.keys(burnTextures)).onChange(function(value) {
-//         shaderMaterial.uniforms['burnTex'].value = burnTextures[value];
-//     });
-//     folderShaderMaterial.add(params, 'burnProgress', 0, 1).step(0.01).onChange(function(value) {
-//         shaderMaterial.uniforms['progress'].value = value;
-
-//     });
-//     gui.open();
-// }
 
 function init() {
     //loadingManager
@@ -279,8 +247,6 @@ function init() {
     initThree();
     //event
     initEvent();
-    //GUI
-    // initGui();
 
     animate();
 
