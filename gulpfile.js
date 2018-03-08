@@ -19,6 +19,7 @@ var gulp = require('gulp'),
     buffer = require('gulp-buffer'),
     concat = require('gulp-concat'),
     babel = require('gulp-babel'),
+    glsl= require('gulp-glsl'),
     paths;
 
 var watching = false;
@@ -37,6 +38,7 @@ paths = {
             'node_modules/swiper/dist/css/swiper.min.css'
         ]
     },
+    glsl:['src/assets/shaders/*.glsl'],
     js: ['src/assets/js/*.js', 'src/assets/js/**/*.js'],
     entry: './src/assets/js/main.js',
     dist: './dist/assets',
@@ -77,7 +79,15 @@ gulp.task('concatlibs', ['clean'], function(cb) {
     ], cb);
 });
 
-gulp.task('compile', ['clean'], function(cb) {
+gulp.task('glsl', ['clean'], function(cb) {
+    pump([gulp.src(paths.glsl),
+        glsl(),
+        gulp.dest('src/assets/shaders/')
+    ], cb);
+});
+
+
+gulp.task('compile', ['glsl'], function(cb) {
     // var bundler = browserify({
     //     cache: {},
     //     packageCache: {},
@@ -135,6 +145,8 @@ gulp.task('cleancss', ['clean'], function(cb) {
     ], cb);
 });
 
+
+
 gulp.task('processhtml', ['clean'], function(cb) {
     pump([
         gulp.src('src/index.html'),
@@ -185,4 +197,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['connect', 'watch', 'build']);
-gulp.task('build', ['clean', 'copy', 'copycss', 'concatlibs', 'compile', 'cleancss', 'htmlmin', 'rev']);
+gulp.task('build', ['clean', 'copy', 'copycss', 'concatlibs','glsl', 'compile', 'cleancss', 'htmlmin', 'rev']);
