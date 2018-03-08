@@ -183,8 +183,8 @@ function loadResCallBack() {
         blending: THREE.NormalBlending,
                 side: THREE.FrontSide,
                 transparent: !0,
-        vertexShader: document.getElementById('waveVertexShader').textContent,
-        fragmentShader: document.getElementById('waveFragmentShader').textContent,
+        vertexShader: require('../shaders/wavevertexshader.js'),
+        fragmentShader: require('../shaders/wavefragmentshader.js'),
         uniforms: e
     });
 
